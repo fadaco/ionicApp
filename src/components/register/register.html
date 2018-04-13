@@ -1,0 +1,20 @@
+<ion-list id="mt-register">
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="email" name="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" name="password"></ion-input>
+  </ion-item>
+
+  <button ion-button type="submit" block>Register</button>
+</ion-list>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <h6 ion-text color="primary" text-center>Already have an account? <span (click)="navigateToLogin('LoginPage')" color="secondary">Log in</span></h6>
+  </ion-toolbar>
+</ion-footer>
