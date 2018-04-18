@@ -1,5 +1,5 @@
 <ion-list id="mt-register">
-
+  <ion-title>{{message}}</ion-title>
   <ion-item>
     <ion-label floating>Email</ion-label>
     <ion-input type="email" [(ngModel)]="user.email"  name="email"></ion-input>
@@ -22,7 +22,7 @@
 
 
 
-  <button ion-button type="submit" block (click)="registerNow()">Register</button>
+  <button ion-button type="submit" block (click)="registerNow(user)">Register</button>
 </ion-list>
 
 

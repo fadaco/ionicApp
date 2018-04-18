@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DataserviceProvider } from '../../providers/dataservice/dataservice';
+import { Res } from '../../models/res';
 
 
 /**
@@ -18,10 +19,12 @@ export class RegisterComponent {
   text: string;
 
   user = {
-    email : 'ggg@f.com',
-    number :'08056555545',
-    username :'fadaco'
+    email : '',
+    number :'',
+    username :'',
+    password: ''
   }
+  message:string;
 
   constructor(public navCtrl: NavController, public dataservice: DataserviceProvider) {
     console.log('Hello RegisterComponent Component');
@@ -32,11 +35,16 @@ export class RegisterComponent {
     this.navCtrl.push(pageName);
   }
 
-  registerNow(){
-       // this.dataservice.registerNewUser(this.user)
-       //     .subscribe(res => {
-       //       console.log(res);
-       //     })
+  registerNow(user){
+    this.dataservice.RegisterNewUser(user).subscribe((res: Res) => {
+      if(res.message){
+        this.message = res.message;
+      }else if(res.success){
+        this.navCtrl.push('LoginPage', {
+          msg: 'You can log in now'
+        });
+      }
+    })
 
   }
 

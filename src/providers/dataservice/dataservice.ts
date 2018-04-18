@@ -18,4 +18,8 @@ export class DataserviceProvider {
     return this.http.post('http://localhost:5200/user/login', user);
   }
 
+  RegisterNewUser(user){
+    return this.http.post('http://localhost:5200/user/register', user);
+  }
+
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { DataserviceProvider } from '../../providers/dataservice/dataservice';
 import { User } from '../../models/loginUser';
-import { DashboardComponent } from '../dashboard/dashboard';
+import { Res } from '../../models/res';
 
 /**
  * Generated class for the LoginComponent component.
@@ -21,12 +21,13 @@ export class LoginComponent {
     email: '',
     password: ''
   }
+  message:string;
+  token: string;
+  successlogin: string;
 
 
-
-  constructor(public navCtrl: NavController, public dataservice: DataserviceProvider) {
-    console.log('Hello LoginComponent Component');
-    this.text = 'Hello World';
+  constructor(public navCtrl: NavController, public dataservice: DataserviceProvider, private navParams: NavParams) {
+   this.successlogin = this.navParams.get('msg');
   }
 
 
@@ -35,12 +36,14 @@ export class LoginComponent {
   }
 
   authenicationLogin(user){
-    this.dataservice.LoginUser(user).subscribe(res => {
-     if(res){
-       this.navCtrl.push(DashboardComponent);
-     }else{
-       console.log('unsoff')
-     }
+    this.dataservice.LoginUser(user).subscribe((res: Res) => {
+       if(res.token) {
+           this.token =  res.token;
+        this.navCtrl.setRoot('DashboardPage');
+       }else{
+           this.message = "Wrong Credential"
+       }
+
     })
   }
 
