@@ -1,15 +1,15 @@
 <ion-list id="mt-login">
     <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="email" name="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label floating>Password</ion-label>
-        <ion-input type="password" name="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" block>Log in</button>
+    <button ion-button type="submit" block (click)="authenicationLogin(user)">Log in</button>
 </ion-list>
 
 <ion-grid>
